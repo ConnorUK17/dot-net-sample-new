@@ -55,8 +55,10 @@ resource "azurerm_container_app" "TestProject1" {
 
   template {
     container {
-      name   = "dotnetexamplecontainer"
-      image  = "mcr.microsoft.com/dotnet/samples:dotnetapp"
+      #name   = "dotnetexamplecontainer"
+      name = "webserver"
+      image = "nginx:latest"
+      #image  = "mcr.microsoft.com/dotnet/samples:dotnetapp"
       cpu    = 1
       memory = "2.0Gi"
     }
