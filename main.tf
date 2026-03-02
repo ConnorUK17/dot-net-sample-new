@@ -46,7 +46,7 @@ resource "azurerm_container_app" "TestProject1" {
   ingress {
     allow_insecure_connections = true
     external_enabled           = true
-    target_port                = 80
+    target_port                = 8080
     traffic_weight {
       latest_revision = true
       percentage      = 100
@@ -55,13 +55,26 @@ resource "azurerm_container_app" "TestProject1" {
 
   template {
     container {
-      #name   = "dotnetexamplecontainer"
-      name = "webserver"
-      image = "nginx:latest"
-      #image  = "mcr.microsoft.com/dotnet/samples:dotnetapp"
+      name   = "dotnetexamplecontainer"
+      #name  = "webserver"
+      #image = "nginx:latest"
+      image  = "mcr.microsoft.com/dotnet/samples:dotnetapp"
       cpu    = 1
       memory = "2.0Gi"
+
+      liveness_probe {
+        http_get {
+          path = "/"
+          port = 8080
+        }
+        initial_delay    = 10
+        interval_seconds = 5
+
+      }
     }
+
+    min_replica = 1
+
   }
 }
 
