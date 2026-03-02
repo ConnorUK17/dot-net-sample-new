@@ -46,7 +46,7 @@ resource "azurerm_container_app" "TestProject1" {
   ingress {
     allow_insecure_connections = true
     external_enabled           = true
-    target_port                = 8080
+    target_port                = 80
     traffic_weight {
       latest_revision = true
       percentage      = 100
