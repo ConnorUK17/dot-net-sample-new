@@ -57,8 +57,8 @@ resource "azurerm_container_app" "TestProject1" {
     container {
       name   = "dotnetexamplecontainer"
       image  = "mcr.microsoft.com/dotnet/samples:dotnetapp"
-      cpu    = 1.0
-      memory = "1.0Gi"
+      cpu    = 1
+      memory = "2.0Gi"
     }
   }
 }
