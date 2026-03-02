@@ -39,6 +39,17 @@ resource "azurerm_container_app" "TestProject1" {
   resource_group_name = data.azurerm_resource_group.TestProject1.name
   container_app_environment_id = azurerm_container_app_environment.TestProject1.id
   revision_mode       = "Single"
+  
+  
+  ingress {
+  allow_insecure_connections = true
+  external_enabled           = true
+  target_port                = 8080
+  traffic_weight {
+    latest_revision = true
+    percentage      = 100
+  }
+}
 
   template {
     container {
