@@ -56,20 +56,15 @@ resource "azurerm_container_app" "TestProject1" {
   template {
     container {
       name   = "dotnetexamplecontainer"
-      #name  = "webserver"
-      #image = "nginx:latest"
       image  = "mcr.microsoft.com/dotnet/samples:dotnetapp"
       cpu    = 1
-      memory = "2.0Gi"
+      memory = "2Gi"
 
       liveness_probe {
-        http_get {
-          path = "/"
-          port = 8080
-        }
-        initial_delay    = 10
+        transport        = "HTTP"
+        port             = 8080
+        path             = "/"
         interval_seconds = 5
-
       }
     }
 
@@ -77,5 +72,4 @@ resource "azurerm_container_app" "TestProject1" {
 
   }
 }
-
 
