@@ -73,7 +73,7 @@ resource "azurerm_container_app" "TestProject1" {
       }
     }
 
-    min_replica = 1
+    min_replicas = 1
 
   }
 }
